@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +16,17 @@ const FormWrapper = styled(Form)`
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { logInLoading } = useSelector((state) => state.user);
+  const { logInLoading, logInError } = useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   // const style = useMemo(() => ({ marginTop: 10 }), []);
+
+  useEffect(() => {
+    if (logInError) {
+      alert(logInError);
+    }
+  }, [logInError]);
 
   const onSubmitForm = useCallback(() => {
     alert(email, password);
