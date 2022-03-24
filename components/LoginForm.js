@@ -29,7 +29,6 @@ const LoginForm = () => {
   }, [logInError]);
 
   const onSubmitForm = useCallback(() => {
-    alert(email, password);
     dispatch({
       type: LOG_IN_REQUEST,
       data: { email, password },

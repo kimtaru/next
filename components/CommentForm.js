@@ -19,13 +19,14 @@ const CommentForm = ({ post }) => {
       setCommentText("");
     }
   }, [addCommentDone]);
+
   const onSubmitComment = useCallback(() => {
-    console.log(post.id, commentText);
     dispatch({
       type: ADD_COMMENT_REQUEST,
       data: { content: commentText, postId: post.id, userId: id },
     });
   }, [commentText, id]);
+
   return (
     <Form onFinish={onSubmitComment}>
       <Form.Item style={{ position: "relative", margin: 0 }}>
