@@ -3,7 +3,7 @@ import React from "react";
 import Proptypes from "prop-types";
 import { StopOutlined } from "@ant-design/icons";
 
-const FollowList = ({ header, data }) => {
+const FollowList = ({ header, data, onClickMore, loading }) => {
   return (
     <List
       style={{ marginBottom: 20 }}
@@ -11,7 +11,9 @@ const FollowList = ({ header, data }) => {
       header={<div>{header}</div>}
       loadMore={
         <div style={{ textAlign: "center", margin: "10px 0" }}>
-          <Button>more</Button>
+          <Button onClick={onClickMore} loading={loading}>
+            more
+          </Button>
         </div>
       }
       bordered
@@ -30,6 +32,8 @@ const FollowList = ({ header, data }) => {
 FollowList.propTypes = {
   header: Proptypes.string.isRequired,
   data: Proptypes.array.isRequired,
+  onClickMore: Proptypes.func.isRequired,
+  loading: Proptypes.bool.isRequired,
 };
 
 export default FollowList;

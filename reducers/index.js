@@ -3,19 +3,19 @@ import { combineReducers } from "redux";
 import user from "./user";
 import post from "./post";
 
-// (이전상태, 액션) => 다음상태
-const rootReducer = combineReducers({
-  index: (state = {}, action) => {
-    switch (action.type) {
-      case HYDRATE:
-        console.log("HYDRATE", action);
-        return { ...state, ...action.payolad };
-      default:
-        return state;
+const rootReducer = (state, action) => {
+  switch (action.type) {
+    case HYDRATE:
+      console.log("HYDRATE", action);
+      return action.payload;
+    default: {
+      const combinedReducer = combineReducers({
+        user,
+        post,
+      });
+      return combinedReducer(state, action);
     }
-  }, // 하이드레이트 사용하기 위해 index reducer 추가
-  user,
-  post,
-});
+  }
+};
 
 export default rootReducer;
